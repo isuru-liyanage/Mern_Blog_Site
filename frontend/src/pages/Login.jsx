@@ -1,38 +1,108 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import './Login.css'
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
 
-const App = props => (
+const App = () => (
     <LoginForm />
 );
 
-class LoginForm extends React.Component{
-    render(){
-        return(
-            <div id="loginform">
-                <h2 id="headerTitle">Login</h2>
-                <Form />
-            </div>
-        )
-    }
-}
+const LoginForm = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: ""
+    });
 
-const Form = props => (
-    <div>
-        <FormInput description="Email" placeholder="Enter the Email" type="text" />
-        <FormInput description="Password" placeholder="Enter the password" type="password"/>
+    const handleInputChange = (name, value) => {
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
-        <div id="button" class="row">
-            <button>Login</button>
+    const handleError = (err) =>
+        toast.error(err, {
+            position: "bottom-left",
+        });
+    const handleSuccess = (msg) =>
+        toast.success(msg, {
+            position: "bottom-right",
+        });
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch("http://localhost:4000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+            console.log(response);
+            const { success, message} = data;
+
+            if (success) {
+
+                handleSuccess(message);
+                setTimeout(() => {
+                    navigate("/");
+                }, 1000);
+            } else {
+                handleError(message);
+            }
+        } catch (error) {
+            handleError(error);
+        }
+    };
+
+    return (
+        <div id="loginform">
+            <h2 id="headerTitle">Login</h2>
+            <form onSubmit={handleSubmit}>
+                <FormInput
+                    name="email"
+                    description="Email"
+                    placeholder="Enter the Email"
+                    type="text"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                />
+                <FormInput
+                    name="password"
+                    description="Password"
+                    placeholder="Enter the password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                />
+
+                <div id="button" className="row">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <ToastContainer />
         </div>
-    </div>
-);
+    );
+};
 
-
-const FormInput = props => (
-    <div class="row">
+const FormInput = (props) => (
+    <div className="row">
         <label>{props.description}</label>
-        <input type={props.type} placeholder={props.placeholder}/>
+        <input
+            type={props.type}
+            name={props.name}
+            placeholder={props.placeholder}
+            value={props.value}
+            onChange={(e) => props.onChange(props.name, e.target.value)}
+        />
     </div>
 );
-
-export default App
+export default App;

@@ -7,6 +7,14 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const { MONGO_URL, PORT } = process.env;
 
+// Enable CORS for all routes
+app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true, // You may need this if you're using cookies or other credentials
+}));
+
 mongoose
   .connect("mongodb+srv://dhananjayaaps:IVoGhCR1kyYB8fQz@cluster0.qcsy9ux.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,

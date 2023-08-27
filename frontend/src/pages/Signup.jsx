@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import './Login.css'
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const App = () => (
     <LoginForm />
 );
 
 const LoginForm = () => {
-    // State to manage form data
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: ""
     });
 
-    // Function to handle form input changes
     const handleInputChange = (name, value) => {
         setFormData({
             ...formData,
             [name]: value
         });
     };
+
+    const handleError = (err) =>
+        toast.error(err, {
+            position: "bottom-left",
+        });
+    const handleSuccess = (msg) =>
+        toast.success(msg, {
+            position: "bottom-right",
+        });
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,16 +45,21 @@ const LoginForm = () => {
                 body: JSON.stringify(formData)
             });
 
-            if (response.ok) {
-                console.log("Form submitted successfully!");
+            const data = await response.json();
+            const { success, message } = data;
+
+            if (success) {
+                handleSuccess(message);
+                setTimeout(() => {
+                    navigate("/");
+                }, 1000);
             } else {
-                console.error("Form submission failed");
+                handleError(message);
             }
         } catch (error) {
-            console.error("Network error:", error);
+            handleError(error);
         }
     };
-
 
     return (
         <div id="loginform">
@@ -77,6 +94,7 @@ const LoginForm = () => {
                     <button type="submit">Sign Up</button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 };
@@ -93,6 +111,4 @@ const FormInput = (props) => (
         />
     </div>
 );
-
-
 export default App;

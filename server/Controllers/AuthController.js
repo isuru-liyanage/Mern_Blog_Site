@@ -3,11 +3,12 @@ const { createSecretToken } = require("../Utils/SecretToken");
 const bcrypt = require("bcryptjs");
 
 module.exports.Signup = async (req, res, next) => {
+  console.log(req);
   try {
     const { email, password, name, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.json({ message: "User already exists" });
+      return res.status(400).json({ message: "User already exists" });
     }
     const user = await User.create({ email, password, name, createdAt });
     const token = createSecretToken(user._id);
@@ -43,7 +44,7 @@ module.exports.Login = async (req, res, next) => {
        withCredentials: true,
        httpOnly: false,
      });
-     res.status(201).json({ message: "User logged in successfully", success: true });
+     res.status(202).json({ message: "User logged in successfully", success: true });
      next()
   } catch (error) {
     console.error(error);
