@@ -2,8 +2,8 @@
 
 body{
   background: rgb(34,193,195);
-  background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
-  font-family: "work sans";
+  background: linear-gradient(135deg, rgb(7, 47, 50) 0%, rgb(0, 55, 131) 100%);
+  font-family: "work sans", serif;
 }
 
 html{
@@ -79,7 +79,7 @@ html{
   color: white;
   font-weight: 700;
   background: rgb(34,193,195);
-  background: linear-gradient(90deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+  background: linear-gradient(135deg, rgb(7, 47, 50) 0%, rgb(0, 55, 131) 100%);
   border: 0px;
   cursor: pointer;
   transition: opacity 0.25s ease-out;
