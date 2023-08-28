@@ -3,6 +3,7 @@ import './Login.css'
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const App = () => (
     <LoginForm />
@@ -36,21 +37,21 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
+
         try {
-            const response = await fetch("http://localhost:4000/login", {
-                method: "POST",
+            const response = await axios.post("http://localhost:4000/login", formData, {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(formData)
+                withCredentials: true
             });
 
-            const data = await response.json();
+            const { data } = response;
             console.log(response);
-            const { success, message} = data;
+            const { success, message } = data;
 
             if (success) {
-
                 handleSuccess(message);
                 setTimeout(() => {
                     navigate("/");
@@ -61,6 +62,7 @@ const LoginForm = () => {
         } catch (error) {
             handleError(error);
         }
+
     };
 
     return (
