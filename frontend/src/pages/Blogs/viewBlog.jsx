@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './Components/Uploads/image1.png';
+import logo from '../Components/Uploads/image1.png';
 import './viewBlog.css';
 
 const blogData = [
