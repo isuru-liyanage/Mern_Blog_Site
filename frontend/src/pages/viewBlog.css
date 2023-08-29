@@ -23,28 +23,29 @@ body{
     font-family: "work sans", serif;
 }
 
+
 .blogTitle {
     font-size: 37px;
 }
 
-.blogContainer .userName {
+.userName {
     font-size: 20px;
     margin-bottom: 30px;
     margin-top: 10px;
 }
 
-.blogContainer .blogText {
+.blogText {
     font-size: 20px;
 }
 
-.blogContainer img {
+img {
     width: 750px;
     height: auto;
     padding-bottom: 30p;
   }
 
 @media (max-width: 768px) {
-.blogContainer img {
+img {
     max-width: 80%;     }
 }
 
@@ -55,7 +56,14 @@ body{
 }
 }
 
+
 @media (max-width: 480px) {
-.blogContainer img {
+img {
     max-width: 60%;    }
 }
+
+  
+  
+  
+  
+  
