@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
-import AddBlog from "./AddBlog"
-import BlogElements from './viewBlog'
+import AddBlog from "./Blogs/AddBlog"
 
 const Home = () => {
   const navigate = useNavigate();
