@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import BlogElements from "./viewBlog";
+import './viewBlog.css'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -53,14 +55,15 @@ const Home = () => {
 
   return (
       <>
-        <div className="home_page">
+        {/* <div className="home_page">
           <h4>
             {" "}
             Welcome <span>{username}</span>
           </h4>
           <button onClick={Logout}>LOGOUT</button>
-        </div>
+        </div> */}
         <ToastContainer />
+        <BlogElements />
       </>
   );
 };

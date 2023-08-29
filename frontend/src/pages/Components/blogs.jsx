@@ -14,21 +14,9 @@ const blogElements = () => {
 
     return (
         <div className="blogContainer">
-            
+
         </div>
     );
 };
 
-const FormInput = (props) => (
-    <div className="row">
-        <label>{props.description}</label>
-        <input
-            type={props.type}
-            name={props.name}
-            placeholder={props.placeholder}
-            value={props.value}
-            onChange={(e) => props.onChange(props.name, e.target.value)}
-        />
-    </div>
-);
-export default App;
+export default blogs;
