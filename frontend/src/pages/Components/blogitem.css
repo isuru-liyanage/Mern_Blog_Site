@@ -45,8 +45,8 @@
 }
 .description p {
     width: auto;
-    height: 120px;
-    padding: 10px;
+    height: 150px;
+    padding: 15px;
     margin: 0;
     font-family: Arial;
     color: #878787;
@@ -56,4 +56,46 @@
 .description{
     clip-path: inset(0);
 
+}
+
+.btn--green_240{
+    width: 240px;
+    height: 54px;
+    color: #0f3870;
+    cursor: pointer;
+    background-color: #9ce2a7;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    align-self: end;
+    justify-self: end;
+    display: flex;
+    position: relative;
+    top: 15px;
+    z-index: 2;
+
+
+
+}
+.bottom-shade{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), #ffffff);
+    height: 90px;
+    position: relative;
+    bottom: 80px;
+    z-index: 0;
+    border-radius: 0 0 18px 18px ;
+}
+
+.btn-text{
+    width: fit-content;
+    padding-right: 18px;
+    font-size: large;
+    /*font-weight: bold;*/
+}
+.btn-icon{
+    width: fit-content;
 }
