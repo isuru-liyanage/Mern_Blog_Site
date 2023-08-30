@@ -1,6 +1,7 @@
 import './blogitem.css'
 
-function BlogItem() {
+function BlogItem(props) {
+    const {}=props;
     return (
 
         <div className="item_layout">
