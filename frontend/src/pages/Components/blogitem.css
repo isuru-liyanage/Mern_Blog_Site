@@ -1,0 +1,24 @@
+.item_layout
+{
+    float:left;
+    height: 450px;
+    width: 370px;
+    color: #151515;
+    background-color: #fff;
+    border-radius: 18px;
+    text-decoration: none;
+    box-shadow: 2px 2px 20px rgba(15,56,112,.15);
+    /*padding: 10px;*/
+    margin: 20px;
+}
+
+.image_element{
+    z-index: 1;
+    display:flex;
+    width: 100%;
+    object-fit: fill;
+    height: 200px;
+    border-radius: 18px 18px 0 0;
+    /*position: relative;*/
+    overflow: hidden;
+}
