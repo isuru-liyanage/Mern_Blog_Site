@@ -12,13 +12,14 @@
     margin: 20px;
 }
 
-.image_element{
+.image_element img{
     z-index: 1;
     display:flex;
+    flex-direction: column;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
     height: 200px;
     border-radius: 18px 18px 0 0;
     /*position: relative;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
