@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
+const BlogSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        required: [true, "Your title is required"],
     },
     publisherName: {
         type: String,
@@ -28,4 +28,4 @@ const postSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('post', BlogSchema);
