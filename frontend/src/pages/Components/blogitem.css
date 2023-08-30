@@ -23,3 +23,37 @@
     /*position: relative;*/
     /*overflow: hidden;*/
 }
+.head{
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(157, 207, 254, 0.55);
+
+}
+.head h2{
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin: 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: darkgreen;
+}
+.head p {
+    margin: 0px;
+    color: #585757;
+    font-size: small;
+
+}
+.description p {
+    width: auto;
+    height: 120px;
+    padding: 10px;
+    margin: 0;
+    font-family: Arial;
+    color: #878787;
+    /*clip-path: content-box;*/
+
+}
+.description{
+    clip-path: inset(0);
+
+}
