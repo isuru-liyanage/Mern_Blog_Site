@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import AddBlog from "./Blogs/AddBlog"
-//import BlogItem from "./Components/BlogItem";
+import BlogItem from "./Components/BlogItem";
+import NavBar from "./Components/navBar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -63,8 +64,10 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer />
-        {/* <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/> */}
-        <AddBlog />
+        <NavBar/>
+        <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+
+        {/*<AddBlog />*/}
         {/* <BlogElements /> */}
       </>
   );
