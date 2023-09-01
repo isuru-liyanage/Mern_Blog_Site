@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import AddBlog from "./Blogs/AddBlog"
 import BlogItem from "./Components/BlogItem";
 import NavBar from "./Components/navBar";
+import NavBarLI from "./Components/navBar_loggedin";
+import './Components/navBar.css'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -64,8 +66,13 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer />
-        <NavBar/>
-        <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+        <NavBarLI/>
+
+        {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}
+        <div className="grid">
+          <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+        </div>
+
 
         {/*<AddBlog />*/}
         {/* <BlogElements /> */}
