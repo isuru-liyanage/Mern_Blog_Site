@@ -1,7 +1,12 @@
 import './blogitem.css'
+import React from "react";
 
 function BlogItem(props) {
     const {}=props;
+    const handleClick = (parameter) => {
+        // Your code to run when the button is clicked
+        console.log('Button clicked with parameter:', parameter);
+    };
     return (
 
         <div className="item_layout">
@@ -22,11 +27,11 @@ function BlogItem(props) {
                     </p>
                 </div>
 
-                
+
                 <div className="bottom-shade">
                     <center>
                         <div >
-                            <div className="btn--green_240">
+                            <div className="btn--green_240" onClick={() => handleClick('Hello, world!')}>
                                 <div className="btn-text" >Read More</div>
                                 <div className="btn-icon" >
                                     <svg width="23" height="20" viewBox="0 0 23 20" fill="none"
