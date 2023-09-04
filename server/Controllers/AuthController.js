@@ -26,6 +26,7 @@ module.exports.Signup = async (req, res, next) => {
 };
 
 module.exports.Login = async (req, res, next) => {
+  console.log('ok');
   try {
     const { email, password } = req.body;
     if(!email || !password ){
