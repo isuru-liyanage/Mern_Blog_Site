@@ -4,11 +4,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './viewBlog.css';
+import CommentsList from "./showComments";
 
 const AddComment = () => {
 
     const [formData, setFormData] = useState({
-        content: [],
+        content: "",
       });
 
     const handleInputChange = (name, value) => {
@@ -19,14 +20,31 @@ const AddComment = () => {
       };
       
 
-    const handleError = (err) =>
+    const handleError = (err) =>{
         toast.error(err, {
             position: "bottom-left",
-        });
-    const handleSuccess = (msg) =>
+        })
+
+        setFormData((prevData) => ({
+            ...prevData,
+            content: ""
+        }));
+    }
+        
+        
+    
+    const handleSuccess = (msg) => {
         toast.success(msg, {
             position: "bottom-right",
         });
+    
+        // Clear the comment text area by resetting the formData state
+        setFormData((prevData) => ({
+            ...prevData,
+            content: ""
+        }));
+    };
+        
 
     const navigate = useNavigate();
 
@@ -35,7 +53,7 @@ const AddComment = () => {
 
 
     try {
-        const response = await axios.post("http://localhost:4000/blogs/create", formData, {
+        const response = await axios.post("http://localhost:4000/comment/create/64f25424e592c53f9051e6c8", formData, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -48,16 +66,12 @@ const AddComment = () => {
 
         if (success) {
             handleSuccess(message);
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
         } else {
             handleError(message);
         }
     } catch (error) {
         handleError(error);
     }
-
     };
 
     return (
@@ -83,6 +97,7 @@ const AddComment = () => {
                 </div>
             </form>
             <ToastContainer />
+            <CommentsList />
         </div>
     );
 };
@@ -95,7 +110,7 @@ const TextArea = (props) => (
             <textarea
             name={props.name}
             placeholder={props.placeholder}
-            value={Array.isArray(props.value) ? props.value.join('\n') : props.value}
+            value={props.value}
             onChange={(e) => props.onChange(props.name, e.target.value)}
 
             />
