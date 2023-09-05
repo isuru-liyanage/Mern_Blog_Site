@@ -51,6 +51,15 @@ body{
     align-items: center;
 }
 
+/* styles.css */
+.custom-button {
+    background: none; /* Remove background */
+    padding: 10px 20px; /* Add padding */
+    border: none; /* Remove border (if any) */
+    cursor: pointer; /* Add a pointer cursor */
+  }
+  
+
 .btn-comment button {
     background-color: #007bff;
     color: #fff;
@@ -67,6 +76,29 @@ body{
     height: 100px;
     resize: none;
 }
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    display: fle;
+}
+
+.comment-item {
+    background-color: #95f0f5;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.comment-content {
+    margin-top: 5px;
+}
+
 
 @media (max-width: 768px) {
     .commentSection textarea {
