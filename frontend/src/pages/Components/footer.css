@@ -1,0 +1,48 @@
+.layout-main{
+width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #010144;
+}
+
+.Miiddle-layout{
+    width: 30%;
+    height: 60px;
+    border-radius: 20px;
+    background-color: rgba(52, 149, 220, 0.87);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Miiddle-layout button{
+    margin: 10px;
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #e3e3e3;
+    color: #010144;
+
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    border: none;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+
+}
+
+.counter{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*margin: 10px;*/
+    font-size: 20px;
+    font-weight: bold;
+    padding-right: 10px;
+    padding-left: 10px;
+}

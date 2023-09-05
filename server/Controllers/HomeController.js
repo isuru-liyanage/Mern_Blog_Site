@@ -6,7 +6,11 @@ async function myBlog(req, res) {
 
 async function viewBlog(req, res) {
     try {
-        const blog = await Blog.find({});
+        const { pagenum } = req.params;
+        if (!pagenum) {
+            return res.status(400).json({ message: 'Page Id is required' });
+        }
+        const blog = await Blog.find({}).skip((pagenum-1)*9).limit(9).exec();
         if (!blog) {
             return res.status(404).json({ message: 'Blog not found' });
         }

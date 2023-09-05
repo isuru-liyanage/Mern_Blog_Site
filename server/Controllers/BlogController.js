@@ -1,8 +1,10 @@
 const Blog = require('../Models/BlogModel');
 
 async function createBlog(req, res) {
+    console.log("abc+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    console.log("Received a createBlog request from: ", req.body);
     try {
-        const {title, interestedFields, content, photoUrl, } = req.body;
+        const {title, interestedFields, content, photoUrl} = req.body;
 
         const publisherId = req.user._id;
         const publisherName = req.user.name;
@@ -24,6 +26,7 @@ async function createBlog(req, res) {
         console.error(error);
         res.status(500).json({ message: 'Failed to create a blog Blog' });
     }
+    return;
 };
 
 async function viewBlog(req, res) {
