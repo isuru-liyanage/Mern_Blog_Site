@@ -84,10 +84,41 @@ async function DeleteSupport(req, res) {
 
 }
 
+async function updateSupport(req, res) {
+    try {
+        
+        const { SupportId } = req.params;
+        const { content, title, phoneno } = req.body;
+        
+        const userId = req.user._id;
+
+        console.log(userId);
+
+        const support = await Support.findOne({ _id: SupportId });
+
+        if( !support ){
+            return res.status(404).json({message : "Invalid Support ID"})
+        }
+
+        if(req.user._id.toString() !== support.userId.toString()){
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        
+        const updatedSupport = await Support.findByIdAndUpdate( SupportId,{content, title, phoneno});
+
+        res.status(200).json({ support,updatedSupport });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to support' });
+    }
+
+}
+
 
 
 
 module.exports={
-    createSupport, getSupportsBySupportId,DeleteSupport
+    createSupport, getSupportsBySupportId,DeleteSupport,updateSupport
 };
 
