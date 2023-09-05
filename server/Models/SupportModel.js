@@ -4,13 +4,18 @@ const SupportSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Enter Your Title"],
+    unique: false
   },
   content: {
     type: String,
-    required: [true, "Enter your content"],
-    unique: true,
+    required: [true, "Enter your content"]
   },
-  phoneNo: {
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  phoneno: {
     type: String,
     required: [false],
   },
@@ -20,4 +25,4 @@ const SupportSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Support", SupportSchema);
+module.exports = mongoose.model("Support", SupportSchema);
