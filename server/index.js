@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const BlogRoutes = require("./Routes/BlogRoute");
 const UploadRoutes = require("./Routes/UploadRoute");
+const CommentRoutes = require("./Routes/CommentRoute");
 const { MONGO_URL, PORT } = process.env;
 const SupportRoutes = require("./Routes/SupportRoute");
 
@@ -38,5 +39,4 @@ app.use("/", authRoute);
 app.use('/Blogs', BlogRoutes);
 app.use('/upload', UploadRoutes);
 app.use("/uploads", express.static("uploads"));
-app.use("/Support",SupportRoutes);
-
+app.use("/comment", CommentRoutes);

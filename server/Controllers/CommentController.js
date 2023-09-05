@@ -1,19 +1,29 @@
-const Comment = require('../models/Comment');
+const Comment = require('../Models/commentModel');
+const Blog = require('../Models/BlogModel');
 
 async function createComment(req, res) {
     try {
         const { content } = req.body;
         const { blogId } = req.params;
+
+        const blog = await Blog.findOne({ _id: blogId });
+
+        if (!blog) {
+        return res.status(404).json({ message: 'Blog not found' });
+        }
+
         const userId = req.user._id;
+        const userName = req.user.name;
         
         const comment = new Comment({
             content,
-            user: userId,
-            blog: blogId,
+            userId,
+            blogId,
+            userName,
         });
 
         const savedComment = await comment.save();
-        res.status(201).json({ comment: savedComment });
+        res.status(201).json({ comment: savedComment , message: "Successfully created"});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Failed to create a comment' });
@@ -79,7 +89,13 @@ async function getCommentsByBlogId(req, res) {
     try {
         const { blogId } = req.params;
 
-        const comments = await Comment.find({ blog: blogId }).populate('user');
+        const blog = await Blog.findOne({ _id: blogId });
+
+        if (!blog) {
+        return res.status(404).json({ message: 'Blog not found' });
+        }
+
+        const comments = await Comment.find({ blogId });
 
         res.status(200).json({ comments });
     } catch (error) {
@@ -88,10 +104,7 @@ async function getCommentsByBlogId(req, res) {
     }
 }
 
-module.exports = {
-    getCommentsByBlogId,
-};
 
 module.exports = {
-    updateComment, createComment, deleteComment,
+    updateComment, createComment, deleteComment, getCommentsByBlogId
 };

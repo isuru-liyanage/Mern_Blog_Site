@@ -66,6 +66,10 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer />
+
+        <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+        {/* <AddBlog /> */}
+        <BlogElements />
         <NavBarLI/>
 
         {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}

@@ -24,6 +24,7 @@ async function createBlog(req, res) {
         console.error(error);
         res.status(500).json({ message: 'Failed to create a blog Blog' });
     }
+    return;
 };
 
 async function viewBlog(req, res) {
