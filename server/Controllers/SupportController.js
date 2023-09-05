@@ -34,15 +34,15 @@ async function getSupportsBySupportId(req, res) {
 
         console.log(userId);
 
-        const support = await Support.findOne({ _id: SupportId });
+        const support = await Support.findOne({ _id: SupportId });
 
         if( !support ){
             return res.status(404).json({message : "Invalid Support ID"})
         }
 
         if(req.user._id.toString() !== support.userId.toString()){
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
         
         res.status(200).json({ support });
 
@@ -62,18 +62,20 @@ async function DeleteSupport(req, res) {
 
         console.log(userId);
 
-        const support = await Support.findOne({ _id: SupportId });
+        const support = await Support.findOne({ _id: SupportId });
 
         if( !support ){
-            return res.status(404).json({message : "Sopport not found"})
+            return res.status(404).json({message : "Support not found"})
         }
        
 
         if(req.user._id.toString() !== support.userId.toString()){
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-        
-        res.status(200).json({ support });
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const deletedSupport = await Support.findByIdAndRemove({ _id: SupportId });
+  
+        res.status(200).json({ support, message: "Support request deleted successfully" });
 
     } catch (error) {
         console.error(error);
@@ -86,6 +88,6 @@ async function DeleteSupport(req, res) {
 
 
 module.exports={
-    createSupport, getSupportsBySupportId
+    createSupport, getSupportsBySupportId,DeleteSupport
 };
 
