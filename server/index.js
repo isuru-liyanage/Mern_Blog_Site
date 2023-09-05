@@ -7,9 +7,10 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const BlogRoutes = require("./Routes/BlogRoute");
 const UploadRoutes = require("./Routes/UploadRoute");
+const CommentRoutes = require("./Routes/CommentRoute");
 const HomeRoutes = require("./Routes/HomeRoute");
 const { MONGO_URL, PORT } = process.env;
-
+const SupportRoutes = require("./Routes/SupportRoute");
 
 app.use(cors({
     origin: ['http://localhost:3000'],
@@ -40,3 +41,4 @@ app.use('/Blogs', BlogRoutes);
 app.use('/upload', UploadRoutes);
 app.use('/home', HomeRoutes);
 app.use("/uploads", express.static("uploads"));
+app.use("/comment", CommentRoutes);
