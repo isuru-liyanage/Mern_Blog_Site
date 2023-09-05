@@ -4,7 +4,9 @@ import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import AddBlog from "./Blogs/AddBlog"
 import BlogItem from "./Components/BlogItem";
-import BlogElements from "./Blogs/viewBlog";
+import NavBar from "./Components/navBar";
+import NavBarLI from "./Components/navBar_loggedin";
+import './Components/navBar.css'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -64,9 +66,20 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer />
-        {/* <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/> */}
+
+        <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
         {/* <AddBlog /> */}
         <BlogElements />
+        <NavBarLI/>
+
+        {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}
+        <div className="grid">
+          <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+        </div>
+
+
+        {/*<AddBlog />*/}
+        {/* <BlogElements /> */}
       </>
   );
 };

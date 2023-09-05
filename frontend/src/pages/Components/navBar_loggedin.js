@@ -1,7 +1,7 @@
 
 import './navBar.css'
 
-function NavBar(){
+function NavBarLI(){
     return(
         <>
 
@@ -11,10 +11,6 @@ function NavBar(){
                         <img src="https://i.ibb.co/Wp1ZfbS/project-management.png"/>
                         <h1>Tech Blog</h1>
 
-                    </div>
-                    <div className="buttonset">
-                        <button className="login-btn">Login</button>
-                        <button className="signup-btn">Signup</button>
                     </div>
 
                     <nav class="header-navigation">
@@ -26,10 +22,22 @@ function NavBar(){
                         <button>Menu</button>
                     </nav>
 
+                    <button className="create-btn">Create</button>
+
+                    <div className="profile-head">
+                        <img src = 'https://allthings.how/content/images/size/w2000/wordpress/2020/11/allthings.how-how-to-change-your-picture-on-zoom-profile-picture.png'/>
+
+                        <div className="text-prof">
+                            <p className="name">Dilki Sewwandi</p>
+                            <button className="logout">Logout</button>
+                        </div>
+                    </div>
+
+
                 </div>
-           </div>
+            </div>
         </>
 
     );
 }
-export default NavBar;
+export default NavBarLI;

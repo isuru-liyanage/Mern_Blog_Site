@@ -9,7 +9,7 @@ const BlogRoutes = require("./Routes/BlogRoute");
 const UploadRoutes = require("./Routes/UploadRoute");
 const CommentRoutes = require("./Routes/CommentRoute");
 const { MONGO_URL, PORT } = process.env;
-
+const SupportRoutes = require("./Routes/SupportRoute");
 
 app.use(cors({
     origin: ['http://localhost:3000'],
