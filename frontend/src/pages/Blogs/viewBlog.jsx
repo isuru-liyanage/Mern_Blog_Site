@@ -6,7 +6,7 @@ const BlogElements = () => {
   const [blogData, setBlogData] = useState(null);
 
   useEffect(() => {
-    const apiUrl = "http://localhost:4000/blogs?blogId=64ef8d0c9c93d448e81c6e5e";
+    const apiUrl = "http://localhost:4000/blogs?blogId=64f25424e592c53f9051e6c8";
 
     fetch(apiUrl)
       .then((response) => response.json())

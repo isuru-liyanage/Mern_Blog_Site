@@ -1,15 +1,23 @@
-const Comment = require('../models/Comment');
+const Comment = require('../Models/commentModel');
+const Blog = require('../Models/BlogModel');
 
 async function createComment(req, res) {
     try {
         const { content } = req.body;
         const { blogId } = req.params;
+
+        const blog = await Blog.findOne({ _id: blogId });
+
+        if (!blog) {
+        return res.status(404).json({ message: 'Blog not found' });
+        }
+
         const userId = req.user._id;
         
         const comment = new Comment({
             content,
-            user: userId,
-            blog: blogId,
+            userId,
+            blogId,
         });
 
         const savedComment = await comment.save();
@@ -93,5 +101,5 @@ module.exports = {
 };
 
 module.exports = {
-    updateComment, createComment, deleteComment,
+    updateComment, createComment, deleteComment, getCommentsByBlogId
 };
