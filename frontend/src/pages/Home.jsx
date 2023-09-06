@@ -15,12 +15,16 @@ const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const [counter, setCounter] = useState(1); // Initialize the counter state
+  const [datalist,setdatalist]= useState([]);
+  const[bar,setbar]=useState(<NavBar/>)
 
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
         logedin=false;
         // navigate("/login");
+        setbar(<NavBar/>);
       } else {
         try {
           const response = await fetch("http://localhost:4000", {
@@ -40,16 +44,19 @@ const Home = () => {
             toast(`Hello ${user}`, {
               position: "top-right",
             });
+            setbar(<NavBarLI username={user} logout={Logout} />);
           } else {
             removeCookie("token");
             logedin=false;
             // navigate("/login");
+            setbar(<NavBar/>);
           }
         } catch (error) {
           console.error("Error fetching data:", error);
           removeCookie("token");
           logedin=false;
           // navigate("/login");
+          setbar(<NavBar/>);
         }
       }
     };
@@ -57,8 +64,14 @@ const Home = () => {
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
-  const [counter, setCounter] = useState(1); // Initialize the counter state
-  const [datalist,setdatalist]= useState([]);
+  const Logout = () => {
+    removeCookie("token");
+    // navigate("/signup");
+    // setUsername("");
+    setbar(<NavBar/>)
+  };
+
+
 
   const updateCounter = (value) => {
     setCounter((prevCounter) => prevCounter + value);
@@ -73,6 +86,7 @@ const Home = () => {
       console.log(data)
       if(message=="Blog Found"){
         setdatalist(blog);
+
       }
 
 
@@ -85,11 +99,7 @@ const Home = () => {
 
   },[counter])
 
-  const Logout = () => {
-    removeCookie("token");
-    // navigate("/signup");
-    setUsername("");
-  };
+
 
   return (
       <>
@@ -101,14 +111,10 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer/>
-        {logedin ? (
-            <NavBarLI username={username} logout={Logout}/>
-        ) : (
-            <NavBar/>
-        )}
 
+        {bar}
 
-        {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}
+        {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
         <div className="grid">
           {datalist?.map((ele,index)=>
               {
