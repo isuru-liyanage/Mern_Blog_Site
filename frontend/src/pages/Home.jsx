@@ -11,6 +11,7 @@ import Home_footer from "./Components/home_footer";
 
 
 let logedin = true;
+let tigger=0
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -75,6 +76,7 @@ const Home = () => {
 
   const updateCounter = (value) => {
     setCounter((prevCounter) => prevCounter + value);
+    tigger= tigger+1
   };
 
   useEffect(()=>{
@@ -88,16 +90,12 @@ const Home = () => {
         setdatalist(blog);
 
       }
-
-
-
-
     }
     Apicall();
 
 
 
-  },[counter])
+  },[tigger])
 
 
 
@@ -119,7 +117,7 @@ const Home = () => {
           <div className="grid">
             {datalist?.map((ele,index)=>
                 {
-                  return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index}/>
+                  return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index} id ={ele._id}/>
                 }
               )}
             {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}

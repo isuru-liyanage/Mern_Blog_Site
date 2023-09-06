@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import './viewBlog.css';
 import AddComment from "./CommentSection";
+import {useParams} from "react-router-dom";
 
 const BlogElements = () => {
   const [blogData, setBlogData] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    const apiUrl = "http://localhost:4000/blogs?blogId=64f25424e592c53f9051e6c8";
+    const apiUrl = `http://localhost:4000/blogs?blogId=${id}`;
 
     fetch(apiUrl)
       .then((response) => response.json())
