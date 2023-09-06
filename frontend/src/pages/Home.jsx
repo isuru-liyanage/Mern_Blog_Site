@@ -115,13 +115,15 @@ const Home = () => {
         {bar}
 
         {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
-        <div className="grid">
-          {datalist?.map((ele,index)=>
-              {
-                return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index}/>
-              }
-            )}
-          {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
+        <div className="layout">
+          <div className="grid">
+            {datalist?.map((ele,index)=>
+                {
+                  return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index}/>
+                }
+              )}
+            {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
+          </div>
         </div>
 
         <Home_footer name={counter} updateCounter={updateCounter} />
