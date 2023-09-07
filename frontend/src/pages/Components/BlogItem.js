@@ -1,12 +1,12 @@
 import './blogitem.css'
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 function BlogItem(props) {
-    const {content,photoUrl,publisherName,title}=props;
-    const handleClick = (parameter) => {
-        // Your code to run when the button is clicked
-        console.log('Button clicked with parameter:', parameter);
-    };
+    const {content,photoUrl,publisherName,title,id}=props;
+    // console.log(id)
+    const navigate = useNavigate();
+
     return (
 
         <div className="item_layout">
@@ -29,7 +29,7 @@ function BlogItem(props) {
                 <div className="bottom-shade">
                     <center>
                         <div >
-                            <div className="btn--green_240" onClick={() => handleClick('Hello, world!')}>
+                            <div className="btn--green_240" onClick={() => {navigate(`/view_blog/${id}`)}}>
                                 <div className="btn-text" >Read More</div>
                                 <div className="btn-icon" >
                                     <svg width="23" height="20" viewBox="0 0 23 20" fill="none"

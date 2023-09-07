@@ -11,16 +11,21 @@ import Home_footer from "./Components/home_footer";
 
 
 let logedin = true;
+let tigger=0
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const [counter, setCounter] = useState(1); // Initialize the counter state
+  const [datalist,setdatalist]= useState([]);
+  const[bar,setbar]=useState(<NavBar/>)
 
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
         logedin=false;
         // navigate("/login");
+        setbar(<NavBar/>);
       } else {
         try {
           const response = await fetch("http://localhost:4000", {
@@ -40,16 +45,19 @@ const Home = () => {
             toast(`Hello ${user}`, {
               position: "top-right",
             });
+            setbar(<NavBarLI username={user} logout={Logout} />);
           } else {
             removeCookie("token");
             logedin=false;
             // navigate("/login");
+            setbar(<NavBar/>);
           }
         } catch (error) {
           console.error("Error fetching data:", error);
           removeCookie("token");
           logedin=false;
           // navigate("/login");
+          setbar(<NavBar/>);
         }
       }
     };
@@ -57,11 +65,18 @@ const Home = () => {
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
-  const [counter, setCounter] = useState(1); // Initialize the counter state
-  const [datalist,setdatalist]= useState([]);
+  const Logout = () => {
+    removeCookie("token");
+    // navigate("/signup");
+    // setUsername("");
+    setbar(<NavBar/>)
+  };
+
+
 
   const updateCounter = (value) => {
     setCounter((prevCounter) => prevCounter + value);
+    tigger= tigger+1
   };
 
   useEffect(()=>{
@@ -73,23 +88,16 @@ const Home = () => {
       console.log(data)
       if(message=="Blog Found"){
         setdatalist(blog);
+
       }
-
-
-
-
     }
     Apicall();
 
 
 
-  },[counter])
+  },[tigger])
 
-  const Logout = () => {
-    removeCookie("token");
-    // navigate("/signup");
-    setUsername("");
-  };
+
 
   return (
       <>
@@ -101,21 +109,19 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer/>
-        {logedin ? (
-            <NavBarLI username={username} logout={Logout}/>
-        ) : (
-            <NavBar/>
-        )}
 
+        {bar}
 
-        {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}
-        <div className="grid">
-          {datalist?.map((ele,index)=>
-              {
-                return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index}/>
-              }
-            )}
-          {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
+        {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
+        <div className="layout">
+          <div className="grid">
+            {datalist?.map((ele,index)=>
+                {
+                  return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index} id ={ele._id}/>
+                }
+              )}
+            {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
+          </div>
         </div>
 
         <Home_footer name={counter} updateCounter={updateCounter} />

@@ -3,6 +3,7 @@
 .grid{
     margin-top: 30px;
     display: flex;
+    max-width: 1230px;
     /* grid-auto-columns: max-content; */
     /* grid-area: auto; */
     /* grid-auto-rows: auto; */
@@ -11,6 +12,20 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+.layout{
+
+    display: flex;
+
+    /* grid-auto-columns: max-content; */
+    /* grid-area: auto; */
+    /* grid-auto-rows: auto; */
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 *,
