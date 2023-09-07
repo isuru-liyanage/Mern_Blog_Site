@@ -2,21 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
-import AddBlog from "./Blogs/AddBlog"
+
 import BlogItem from "./Components/BlogItem";
 import NavBar from "./Components/navBar";
 import NavBarLI from "./Components/navBar_loggedin";
 import './Components/navBar.css'
+import Home_footer from "./Components/home_footer";
 
+
+let logedin = true;
+let tigger=0
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
+  const [counter, setCounter] = useState(1); // Initialize the counter state
+  const [datalist,setdatalist]= useState([]);
+  const[bar,setbar]=useState(<NavBar/>)
 
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        logedin=false;
+        // navigate("/login");
+        setbar(<NavBar/>);
       } else {
         try {
           const response = await fetch("http://localhost:4000", {
@@ -36,14 +45,19 @@ const Home = () => {
             toast(`Hello ${user}`, {
               position: "top-right",
             });
+            setbar(<NavBarLI username={user} logout={Logout} />);
           } else {
             removeCookie("token");
-            navigate("/login");
+            logedin=false;
+            // navigate("/login");
+            setbar(<NavBar/>);
           }
         } catch (error) {
           console.error("Error fetching data:", error);
           removeCookie("token");
-          navigate("/login");
+          logedin=false;
+          // navigate("/login");
+          setbar(<NavBar/>);
         }
       }
     };
@@ -53,8 +67,37 @@ const Home = () => {
 
   const Logout = () => {
     removeCookie("token");
-    navigate("/signup");
+    // navigate("/signup");
+    // setUsername("");
+    setbar(<NavBar/>)
   };
+
+
+
+  const updateCounter = (value) => {
+    setCounter((prevCounter) => prevCounter + value);
+    tigger= tigger+1
+  };
+
+  useEffect(()=>{
+    const Apicall = async() =>{
+      console.log("api call")
+      const res = await fetch(`http://localhost:4000/home/${counter}`)
+      const data = await res.json()
+      const {blog,message}=data;
+      console.log(data)
+      if(message=="Blog Found"){
+        setdatalist(blog);
+
+      }
+    }
+    Apicall();
+
+
+
+  },[tigger])
+
+
 
   return (
       <>
@@ -65,15 +108,23 @@ const Home = () => {
           </h4>
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
-        <ToastContainer />
-        <NavBarLI/>
+        <ToastContainer/>
 
-        {/*<button onClick={() => navigate("/login")}>Click ME</button>*/}
-        <div className="grid">
-          <BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>
+        {bar}
+
+        {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
+        <div className="layout">
+          <div className="grid">
+            {datalist?.map((ele,index)=>
+                {
+                  return <BlogItem content={ele.content} photoUrl={ele.photoUrl} publisherName={ele.publisherName} title={ele.title} key ={index} id ={ele._id}/>
+                }
+              )}
+            {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
+          </div>
         </div>
 
-
+        <Home_footer name={counter} updateCounter={updateCounter} />
         {/*<AddBlog />*/}
         {/* <BlogElements /> */}
       </>

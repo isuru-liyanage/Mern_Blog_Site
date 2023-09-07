@@ -1,37 +1,35 @@
 import './blogitem.css'
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 function BlogItem(props) {
-    const {}=props;
-    const handleClick = (parameter) => {
-        // Your code to run when the button is clicked
-        console.log('Button clicked with parameter:', parameter);
-    };
+    const {content,photoUrl,publisherName,title,id}=props;
+    // console.log(id)
+    const navigate = useNavigate();
+
     return (
 
         <div className="item_layout">
             <div className="image_element">
-                <img src="https://www.boardinfinity.com/blog/content/images/2023/01/Mern.png"
+                <img src={photoUrl}
                     loading="lazy"
                     />
             </div>
             <div className="part2">
                 <div className="head">
-                    <h2>Title</h2>
-                    <p>Date and Time</p>
+                    <h2>{title}</h2>
+                    <p>By {publisherName}</p>
                 </div>
 
                 <div className="description">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis nunc eget lorem dolor sed viverra ipsum. Nisl tincidunt eget nullam non nisi est. Amet venenatis urna cursus eget nunc scelerisque viverra mauris in. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Praesent elementum facilisis leo vel fringilla est. Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed. Laoreet suspendisse interdum consectetur libero. Posuere lorem ipsum dolor sit amet. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus.
-                    </p>
+                    <p>{content}</p>
                 </div>
 
 
                 <div className="bottom-shade">
                     <center>
                         <div >
-                            <div className="btn--green_240" onClick={() => handleClick('Hello, world!')}>
+                            <div className="btn--green_240" onClick={() => {navigate(`/view_blog/${id}`)}}>
                                 <div className="btn-text" >Read More</div>
                                 <div className="btn-icon" >
                                     <svg width="23" height="20" viewBox="0 0 23 20" fill="none"

@@ -1,6 +1,7 @@
 .blogContainer {
     padding-left: 10%;
     padding-right: 10% ;
+    background: aliceblue;
 }
 
 .centered-content {
@@ -41,21 +42,108 @@ body{
     width: 400px;
     height: auto;
     padding-bottom: 30p;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+/* styles.css */
+.custom-button {
+    background: none; /* Remove background */
+    padding: 10px 20px; /* Add padding */
+    border: none; /* Remove border (if any) */
+    cursor: pointer; /* Add a pointer cursor */
   }
+  
+
+.btn-comment button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none; 
+    cursor: pointer;
+    width: 100px;
+    border-radius: 15px;
+}
+
+.commentSection textarea{
+    width: 500px;
+    max-width: 500px;
+    height: 100px;
+    resize: none;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    display: fle;
+}
+
+.comment-item {
+    background-color: #95f0f5;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.comment-content {
+    margin-top: 5px;
+}
+
 
 @media (max-width: 768px) {
-.blogContainer img {
-    max-width: 80%;     }
-}
-
-@media (min-width: 768px) {
-.blogContainer{
-    justify-content: center;
-    max-width: 750px;
-}
+    .commentSection textarea {
+        width: 400px;
+        max-width: none;
+        padding: 5px;
+    }
 }
 
 @media (max-width: 480px) {
-.blogContainer img {
-    max-width: 60%;    }
+    .commentSection textarea {
+        width: 220px;
+        max-width: none;
+        padding: 5px;
+    }
+
+    .btn-comment button {
+        width: auto; 
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .blogContainer img {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 768px) {
+    .blogContainer{
+        justify-content: center;
+        max-width: 750px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .commentSection {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .blogContainer img {
+        max-width: 60%;    
+    }
+
 }

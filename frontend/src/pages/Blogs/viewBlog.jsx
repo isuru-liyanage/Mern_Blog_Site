@@ -1,3 +1,62 @@
+import React, { useEffect, useState } from "react";
+import './viewBlog.css';
+import AddComment from "./CommentSection";
+import {useParams} from "react-router-dom";
+
+const BlogElements = () => {
+  const [blogData, setBlogData] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const apiUrl = `http://localhost:4000/blogs?blogId=${id}`;
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setBlogData(data.blog);
+        } else {
+          console.error("Failed to fetch blog data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching blog data:", error);
+      });
+  }, []);
+
+  if (!blogData) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="blogContainer" style={{ margin: 'auto' }}>
+      <div className="centered-content">
+        <center>
+          <h2 className="blogTitle">{blogData.title}</h2>
+        </center>
+      </div>
+
+      <div className="right-align">
+        <p className="userName">Written by: {blogData.publisherName}</p>
+      </div>
+
+      <div className="centered-content">
+        <img className="postImage" src={blogData.photoUrl} alt={blogData.title} />
+      </div>
+
+      <div className="blogContent">
+        {blogData.content.map((paragraph, paragraphIndex) => (
+          <p key={paragraphIndex} className="blogText">{paragraph}</p>
+        ))}
+      </div>
+      <AddComment />
+    </div>
+  );
+};
+
+export default BlogElements;
+
+
 // import React from "react";
 // import logo from '../Components/Uploads/image1.png';
 // import './viewBlog.css';
@@ -63,60 +122,3 @@
 
 // export default BlogElements;
 
-
-import React, { useEffect, useState } from "react";
-import './viewBlog.css';
-
-const BlogElements = () => {
-  const [blogData, setBlogData] = useState(null);
-
-  useEffect(() => {
-    // Define the API URL
-    const apiUrl = "http://localhost:4000/blogs?blogId=64ef8d0c9c93d448e81c6e5e";
-
-    // Fetch data from the API
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setBlogData(data.blog);
-        } else {
-          // Handle the case where the API request is not successful
-          console.error("Failed to fetch blog data");
-        }
-      })
-      .catch((error) => {
-        // Handle any network or other errors
-        console.error("Error fetching blog data:", error);
-      });
-  }, []);
-
-  if (!blogData) {
-    // Render loading state while data is being fetched
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div className="blogContainer" style={{ margin: 'auto' }}>
-      <div className="centered-content">
-        <h2 className="blogTitle">{blogData.title}</h2>
-      </div>
-
-      <div className="right-align">
-        <p className="userName">Written by: {blogData.publisherName}</p>
-      </div>
-
-      <div className="centered-content">
-        <img className="postImage" src={blogData.photoUrl} alt={blogData.title} />
-      </div>
-
-      <div className="blogContent">
-        {blogData.content.map((paragraph, paragraphIndex) => (
-          <p key={paragraphIndex} className="blogText">{paragraph}</p>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default BlogElements;
