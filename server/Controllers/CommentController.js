@@ -35,13 +35,13 @@ async function updateComment(req, res) {
         const { commentId } = req.params;
         const { content } = req.body;
 
-        const Comment = await Comment.findOne({ _id: commentId });
+        const comment = await Comment.findOne({ _id: commentId });
 
-        if (!Comment) {
+        if (!comment) {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        if(req.user._id.toString() !== blog.publisherId.toString()){
+        if(req.user._id.toString() !== comment.userId.toString()){
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
@@ -62,13 +62,13 @@ async function deleteComment(req, res) {
     try {
         const { commentId } = req.params;
 
-        const Comment = await Comment.findOne({ _id: commentId });
+        const comment = await Comment.findOne({ _id: commentId });
 
-        if (!Comment) {
+        if (!comment) {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        if(req.user._id.toString() !== blog.publisherId.toString()){
+        if(req.user._id.toString() !== comment.userId.toString()){
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
@@ -78,7 +78,7 @@ async function deleteComment(req, res) {
             return res.status(404).json({ message: 'Comment not found' });
         }
 
-        res.status(204).end();
+        res.status(200).json({message: "Comment deleted Succcessfully"});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Failed to delete the comment' });
