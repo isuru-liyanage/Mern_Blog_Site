@@ -8,7 +8,7 @@ const authRoute = require("./Routes/AuthRoute");
 const BlogRoutes = require("./Routes/BlogRoute");
 const UploadRoutes = require("./Routes/UploadRoute");
 const { MONGO_URL, PORT } = process.env;
-
+const UserRoutes = require("./Routes/UserRoutes")
 
 app.use(cors({
     origin: ['http://localhost:3000'],
@@ -38,3 +38,5 @@ app.use("/", authRoute);
 app.use('/Blogs', BlogRoutes);
 app.use('/upload', UploadRoutes);
 app.use("/uploads", express.static("uploads"));
+app.use("/user", UserRoutes);
+ 
