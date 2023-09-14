@@ -5,7 +5,7 @@ import { Login, Signup,Home,Create} from "./pages";
 
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
-import UpdateProfile from "./pages/UpdateProfile";
+
 
 
 function App() {
@@ -18,7 +18,6 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/UpdateProfile" element={UpdateProfile />} />
 
       </Routes>
     </div>
