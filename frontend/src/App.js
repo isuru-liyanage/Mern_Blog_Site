@@ -5,6 +5,7 @@ import { Login, Signup,Home,Create} from "./pages";
 
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
+import CreateTicket from "./pages/CreateTicket";
 import SupportView from "./pages/SupportView";
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/CreateTicket" element={<CreateTicket />} />
         <Route path="/support" element={<SupportView/>}/>
 
       </Routes>
