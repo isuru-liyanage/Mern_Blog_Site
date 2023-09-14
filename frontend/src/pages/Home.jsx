@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
 import BlogItem from "./Components/BlogItem";
@@ -8,22 +7,22 @@ import NavBar from "./Components/navBar";
 import NavBarLI from "./Components/navBar_loggedin";
 import './Components/navBar.css'
 import Home_footer from "./Components/home_footer";
+import { useCookies } from "react-cookie";
+
 // import profileView from "./pages/Profile_View";
 // import './pages/profileView.css'
-
 
 let logedin = true;
 let tigger=0
 
 const Home = () => {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
+  const [cookies, removeCookie] = useCookies(["userRole"]);
   const [username, setUsername] = useState("");
-  const [counter, setCounter] = useState(1); // Initialize the counter state
+  const [counter, setCounter] = useState(1);
   const [datalist,setdatalist]= useState([]);
   const[bar,setbar]=useState(<NavBar/>)
-
-
+  const userRole = cookies.userRole || "user";
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -77,8 +76,6 @@ const Home = () => {
     setbar(<NavBar/>)
   };
 
-
-
   const updateCounter = (value) => {
     setCounter((prevCounter) => prevCounter + value);
     tigger= tigger+1
@@ -120,6 +117,7 @@ const Home = () => {
         {bar}
 
         {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
+
         <div className="layout">
           <div className="grid">
             {datalist?.map((ele,index)=>
@@ -130,6 +128,14 @@ const Home = () => {
             {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
           </div>
         </div>
+      
+
+        {userRole === "admin" ? (
+        // <AdminHome />
+        <div><h1>Admin Page</h1></div>
+        ) : (
+        <div><h1>User Page</h1></div>
+        )}
 
         <Home_footer name={counter} updateCounter={updateCounter} />
         {/*<AddBlog />*/}

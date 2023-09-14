@@ -80,8 +80,6 @@ const AddBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-
-
         try {
             const response = await axios.post("http://localhost:4000/blogs/create", formData, {
                 headers: {
