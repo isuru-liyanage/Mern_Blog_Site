@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Login, Signup,Home,Create} from "./pages";
+import { EditBlog } from "./pages/Blogs/EditBlog"
 // import Home from "./pages/Home";
 
 
@@ -16,7 +17,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
         <Route path="/profile" element={<Profile />} />
-
+        <Route path="/editor/:blogId" element={<EditBlog />} />
       </Routes>
     </div>
   );

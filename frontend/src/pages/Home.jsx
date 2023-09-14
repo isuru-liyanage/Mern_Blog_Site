@@ -100,8 +100,6 @@ const Home = () => {
 
   },[tigger])
 
-
-
   return (
       <>
         {/* <div className="home_page">
@@ -137,8 +135,7 @@ const Home = () => {
         )}
 
         <Home_footer name={counter} updateCounter={updateCounter} />
-        {/*<AddBlog />*/}
-        {/* <BlogElements /> */}
+
       </>
   );
 };
