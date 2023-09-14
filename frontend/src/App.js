@@ -5,6 +5,7 @@ import { Login, Signup,Home,Create} from "./pages";
 
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
+import SupportView from "./pages/SupportView";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/support" element={<SupportView/>}/>
 
       </Routes>
     </div>
