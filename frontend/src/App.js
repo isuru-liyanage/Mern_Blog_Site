@@ -4,6 +4,7 @@ import { Login, Signup,Home,Create} from "./pages";
 
 
 import BlogElements from "./pages/Blogs/viewBlog";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
+        <Route path="/profile" element={<Profile />} />
 
       </Routes>
     </div>
