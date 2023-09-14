@@ -4,6 +4,7 @@ import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const App = () => (
     <LoginForm />
@@ -36,34 +37,36 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
-
+      
         try {
-            const response = await axios.post("http://localhost:4000/signup", formData, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                withCredentials: true
-            });
-
-            const { data } = response;
-            console.log(response);
-            const { success, message } = data;
-
-            if (success) {
-                handleSuccess(message);
-                setTimeout(() => {
-                    navigate("/");
-                }, 1000);
-            } else {
-                handleError(message);
-            }
+          const response = await axios.post("http://localhost:4000/signup", formData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          });
+      
+          const { data } = response;
+          console.log(response);
+          const { success, message, user } = data;
+      
+          if (success) {
+            handleSuccess(message);
+      
+            Cookies.set("userId", user._id);
+            Cookies.set("userRole", user.role);
+      
+            setTimeout(() => {
+              navigate("/");
+            }, 1000);
+          } else {
+            handleError(message);
+          }
         } catch (error) {
-            handleError(error);
+          handleError(error);
         }
-
-    };
+      };
+      
 
     return (
         <div id="loginform">
