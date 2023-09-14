@@ -6,7 +6,7 @@ import { Login, Signup,Home,Create} from "./pages";
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
 import CreateTicket from "./pages/CreateTicket";
-
+import ContactUs from "./pages/CreateTicket";
 
 function App() {
   return (
