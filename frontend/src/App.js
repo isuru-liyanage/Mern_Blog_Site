@@ -5,6 +5,7 @@ import { Login, Signup,Home,Create} from "./pages";
 
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
+import UpdateProfile from "./pages/UpdateProfile";
 
 
 function App() {
