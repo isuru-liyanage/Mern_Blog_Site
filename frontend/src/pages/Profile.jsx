@@ -16,7 +16,8 @@ function Profile() {
 
   // Function to handle name and email updates
   const handleNameUpdate = () => {
-    setUser({ ...user, name: newName });
+    setUser({ ...user, name: newName });  
+    
     setNameEditable(false);
   };
 
