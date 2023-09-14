@@ -5,12 +5,20 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './viewBlog.css';
 import CommentsList from "./showComments";
+import { useCookies } from "react-cookie";
 
-const AddComment = () => {
+const AddComment = (props) => {
+
+    const [cookies, removeCookie] = useCookies(["userRole"]);
 
     const [formData, setFormData] = useState({
         content: "",
       });
+
+    const {BlogId} = props;
+
+    const userRole = cookies.userRole || "user";
+    const userId = cookies.userId || "0";
 
     const handleInputChange = (name, value) => {
         setFormData((prevData) => ({
@@ -18,7 +26,6 @@ const AddComment = () => {
           [name]: Array.isArray(prevData[name]) ? [value] : value
         }));
       };
-      
 
     const handleError = (err) =>{
         toast.error(err, {
@@ -31,14 +38,13 @@ const AddComment = () => {
         }));
     }
         
-        
+      
     
     const handleSuccess = (msg) => {
         toast.success(msg, {
             position: "bottom-right",
         });
     
-        // Clear the comment text area by resetting the formData state
         setFormData((prevData) => ({
             ...prevData,
             content: ""
@@ -53,7 +59,7 @@ const AddComment = () => {
 
 
     try {
-        const response = await axios.post("http://localhost:4000/comment/create/64f25424e592c53f9051e6c8", formData, {
+        const response = await axios.post(`http://localhost:4000/comment/create/${BlogId}`, formData, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -65,9 +71,9 @@ const AddComment = () => {
         const { success, message } = data;
 
         if (success) {
-            handleSuccess(message);
-        } else {
             handleError(message);
+        } else {
+            handleSuccess(message);
         }
     } catch (error) {
         handleError(error);
@@ -97,7 +103,6 @@ const AddComment = () => {
                 </div>
             </form>
             <ToastContainer />
-            <CommentsList />
         </div>
     );
 };

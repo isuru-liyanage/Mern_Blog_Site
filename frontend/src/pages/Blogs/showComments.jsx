@@ -2,21 +2,26 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { withCookies } from "react-cookie";
+import { withCookies , useCookies} from "react-cookie";
 
-const CommentsList = () => {
+const CommentsList = (props) => {
   const [comments, setComments] = useState([]);
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editedCommentContent, setEditedCommentContent] = useState("");
   const [showEditPopup, setShowEditPopup] = useState(false);
-  const userId = "64eb7d175e697179dc08800f";
+  const [cookies, removeCookie] = useCookies(["userRole", "userId"]);
+  const userId = cookies.userId || "0";
+  const userRole = cookies.userRole || "user";
+
+  const {BlogId} = props;
 
   useEffect(() => {
-    axios.get("http://localhost:4000/comment/64f25424e592c53f9051e6c8").then((response) => {
+    axios.get(`http://localhost:4000/comment/${BlogId}`).then((response) => {
       setComments(response.data.comments);
     });
   }, []);
 
+  
   const handleEditClick = (commentId, content) => {
     setEditingCommentId(commentId);
     setEditedCommentContent(content);
