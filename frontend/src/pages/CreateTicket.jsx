@@ -7,6 +7,10 @@ function CreateTicket() {
     <div>
       <NavBarLI /> 
       <div className="container">
+      <div className="userInfo-box">      
+            <input type="text" placeholder="Title" className="title" />
+            <input type="text" placeholder="Phone Number" />
+        </div>
         <div className="text-box">
           <textarea placeholder="Enter your text here"></textarea>
         </div>
