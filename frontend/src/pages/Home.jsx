@@ -22,7 +22,6 @@ const Home = () => {
   const [counter, setCounter] = useState(1);
   const [datalist,setdatalist]= useState([]);
   const[bar,setbar]=useState(<NavBar/>)
-
   const userRole = cookies.userRole || "user";
 
   useEffect(() => {
@@ -84,11 +83,11 @@ const Home = () => {
 
   useEffect(()=>{
     const Apicall = async() =>{
-      console.log("api call")
+      // console.log("api call")
       const res = await fetch(`http://localhost:4000/home/${counter}`)
       const data = await res.json()
       const {blog,message}=data;
-      console.log(data)
+      console.log(data);
       if(message=="Blog Found"){
         setdatalist(blog);
 
@@ -112,6 +111,8 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer/>
+
+
 
         {bar}
 
