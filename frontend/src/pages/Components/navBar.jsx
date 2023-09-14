@@ -21,7 +21,6 @@ function NavBar(){
                     <nav className="header-navigation">
 
                         <a href="#">Home</a>
-                        <a href="#">About</a>
                         <a href="#">Blog</a>
                         <a href="#">Contact Us</a>
                         <button>Menu</button>
