@@ -44,3 +44,4 @@ app.use('/home', HomeRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use("/user", UserRoutes);
 app.use("/comment", CommentRoutes);
+app.use("/support", SupportRoutes);
