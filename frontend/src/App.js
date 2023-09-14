@@ -6,6 +6,8 @@ import { EditBlog } from "./pages/Blogs/EditBlog"
 
 import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
+import CreateTicket from "./pages/CreateTicket";
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/view_blog/:id" element={<BlogElements />} />
         <Route path="/profile" element={<Profile />} />
+
+       <Route path="/CreateTicket" element={<CreateTicket />} />
         <Route path="/editor/:blogId" element={<EditBlog />} />
       </Routes>
     </div>
