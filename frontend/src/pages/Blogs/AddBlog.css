@@ -10,16 +10,15 @@ html{
   font-size: 100%;
 }
 
-#postingform{
+/* #postingform{
   max-width: 500px;
   min-width: 500px;
-  /* max-height: 700px; */
+  max-height: 700px;
   width: 30%;
   height: 60%;
   margin: 200px auto;
-  background-color: #FFFFFF;
   border-radius: 25px;
-}
+} */
 
 #headerTitle{
   text-align: center;

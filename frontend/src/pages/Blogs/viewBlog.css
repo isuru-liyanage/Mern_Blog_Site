@@ -130,16 +130,22 @@ body{
 @media (min-width: 768px) {
     .blogContainer{
         justify-content: center;
-        max-width: 750px;
+        max-width: 768px;
     }
 }
 
+@media (min-width: 1000px) {
+    .blogContainer{
+        justify-content: center;
+        max-width: 1000px;
+    }
+}
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .commentSection {
         max-width: 50%;
     }
-}
+} */
 
 @media (max-width: 480px) {
     .blogContainer img {

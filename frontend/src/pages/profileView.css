@@ -1,0 +1,84 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: rgba(118, 83, 83, 1);
+  }
+  
+  .profile-box {
+    width: 50%;
+    width: 50%;
+    justify-content: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+  
+  .profile-image {
+    width: 30%;
+    /* height: 336px; */
+    clip-path: circle(at center);
+    /* border-radius: 0; */
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-header h5 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .profile-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .profile-input input {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: rgba(217, 217, 217, 1);
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* button:hover {
+    background-color: gray;
+  } */
+  
+  /* CSS for profile header container */
+.profile-header {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+
+
+/* CSS for button element */
+.profile-header button {
+  margin-left: 30px;
+  padding: 5px 10px;
+  background-color: rgba(217, 217, 217, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.profile-header button:hover {
+  background-color: gray;
+}
