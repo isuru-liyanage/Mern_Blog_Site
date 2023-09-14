@@ -6,11 +6,13 @@ module.exports.Signup = async (req, res, next) => {
   console.log(req);
   try {
     const { email, password, name, createdAt } = req.body;
+    // Set the default role to "user"
+    const role = "user";
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-    const user = await User.create({ email, password, name, createdAt });
+    const user = await User.create({ email, password, name, createdAt, role });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
@@ -18,7 +20,7 @@ module.exports.Signup = async (req, res, next) => {
     });
     res
       .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
+      .json({ message: "User signed up successfully", success: true, user });
     next();
   } catch (error) {
     console.error(error);

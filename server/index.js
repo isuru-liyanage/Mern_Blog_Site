@@ -10,6 +10,7 @@ const UploadRoutes = require("./Routes/UploadRoute");
 const CommentRoutes = require("./Routes/CommentRoute");
 const HomeRoutes = require("./Routes/HomeRoute");
 const { MONGO_URL, PORT } = process.env;
+const UserRoutes = require("./Routes/UserRoutes")
 const SupportRoutes = require("./Routes/SupportRoute");
 
 app.use(cors({
@@ -41,4 +42,5 @@ app.use('/Blogs', BlogRoutes);
 app.use('/upload', UploadRoutes);
 app.use('/home', HomeRoutes);
 app.use("/uploads", express.static("uploads"));
+app.use("/user", UserRoutes);
 app.use("/comment", CommentRoutes);

@@ -8,6 +8,8 @@ import NavBar from "./Components/navBar";
 import NavBarLI from "./Components/navBar_loggedin";
 import './Components/navBar.css'
 import Home_footer from "./Components/home_footer";
+// import profileView from "./pages/Profile_View";
+// import './pages/profileView.css'
 
 
 let logedin = true;
