@@ -12,6 +12,7 @@ import Home_footer from "./Components/home_footer";
 
 let logedin = true;
 let tigger=0
+
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -19,6 +20,8 @@ const Home = () => {
   const [counter, setCounter] = useState(1); // Initialize the counter state
   const [datalist,setdatalist]= useState([]);
   const[bar,setbar]=useState(<NavBar/>)
+
+
 
   useEffect(() => {
     const verifyCookie = async () => {
@@ -81,11 +84,11 @@ const Home = () => {
 
   useEffect(()=>{
     const Apicall = async() =>{
-      console.log("api call")
+      // console.log("api call")
       const res = await fetch(`http://localhost:4000/home/${counter}`)
       const data = await res.json()
       const {blog,message}=data;
-      console.log(data)
+      console.log(data);
       if(message=="Blog Found"){
         setdatalist(blog);
 
@@ -109,6 +112,8 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer/>
+
+
 
         {bar}
 
