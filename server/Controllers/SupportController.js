@@ -117,7 +117,6 @@ async function updateSupport(req, res) {
 
 
 
-
 module.exports={
     createSupport, getSupportsBySupportId,DeleteSupport,updateSupport
 };
