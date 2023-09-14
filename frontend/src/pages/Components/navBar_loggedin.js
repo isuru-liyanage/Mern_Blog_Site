@@ -19,7 +19,7 @@ function NavBarLI(props){
                     <nav className="header-navigation">
 
                         <a href="#">Home</a>
-                        <a href="#">About</a>
+                        <a href="#">Support</a>
                         <a href="#">Blog</a>
                         <a href="#">Contact Us</a>
                         <button>Menu</button>
@@ -27,11 +27,11 @@ function NavBarLI(props){
 
                     <button className="create-btn" onClick={()=> navigate('/create')}>Create</button>
 
-                    <div className="profile-head">
+                    <div className="profile-head"  onClick={() => navigate('Profile') }>
                         <img src = 'https://allthings.how/content/images/size/w2000/wordpress/2020/11/allthings.how-how-to-change-your-picture-on-zoom-profile-picture.png'/>
 
                         <div className="text-prof">
-                            <p className="name">{username}</p>
+                            <p className="name"  onClick={() => navigate('Profile') }>{username}</p>
                             <button className="logout" onClick={()=> logout()}>Logout</button>
                         </div>
                     </div>
