@@ -1,10 +1,20 @@
 
 import './navBar.css'
 import {useNavigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 function NavBarLI(props){
     const {username,logout}=props;
     const navigate = useNavigate();
+    const [cookies, removeCookie] = useCookies(["userRole"]);
+
+    function handleLogout(){
+        removeCookie("token");
+        navigate('/');
+        logout();
+    }
+
+
     return(
         <>
 
@@ -32,7 +42,7 @@ function NavBarLI(props){
 
                         <div className="text-prof">
                             <p className="name"  onClick={() => navigate('Profile') }>{username}</p>
-                            <button className="logout" onClick={()=> logout()}>Logout</button>
+                            <button className="logout" onClick={()=> handleLogout()}>Logout</button>
                         </div>
                     </div>
 
