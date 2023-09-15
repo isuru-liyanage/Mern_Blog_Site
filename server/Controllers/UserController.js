@@ -67,7 +67,29 @@ async function allUsers(req, res){
     }
   }
 
+
+async function deleteUserAdmin(req, res){
+    try {
+        const { userId } = req.params;
+        const currentUser = await User.findOne({_id: userId});
+    
+        if (req.user.role !== "admin") {
+            return res.status(401).json({message: 'Unauthorized'});
+        }
+
+        const deletedUser = await User.findOneAndDelete({_id: userId});
+
+        res.status(200).json({ message: 'User Deleted' , succes: true});
+        }
+   
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+       }
+}
+
+
 module.exports = {
-    deleteUser, viewUser, updateUser, allUsers
+    deleteUser, viewUser, updateUser, allUsers, deleteUserAdmin
 };
  
