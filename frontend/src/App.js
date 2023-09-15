@@ -7,6 +7,7 @@ import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
 import CreateTicket from "./pages/CreateTicket";
 import SupportView from "./pages/SupportView";
+import UpdateTicket from "./pages/UpdateTicket";
 
 
 
@@ -22,6 +23,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/CreateTicket" element={<CreateTicket />} />
         <Route path="/support" element={<SupportView/>}/>
+        <Route path="/Updateticket/:id" element={<UpdateTicket/>}/>
+
 
       </Routes>
     </div>

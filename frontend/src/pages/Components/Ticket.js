@@ -1,13 +1,19 @@
 import './ticket.css'
-function Ticket(){
+import {useNavigate} from "react-router-dom";
+function Ticket(props){
+    const navigate = useNavigate();
+    const {title,date,cnt,id}=props;
+    console.log(id)
     return(
         <div className="main-contain">
             <div className="layout-contain">
                 <div className="left">
-                    <h2>title</h2>
+                    <h2>{title}</h2>
+                    <p>Date : {date}</p>
+                    <p>{cnt}</p>
                 </div>
                 <div className="right">
-                    <button className="edit">Edit</button>
+                    <button className="edit" onClick={() => navigate(`/Updateticket/${id}`)}>Edit</button>
                     <button className="delete">Delete</button>
                 </div>
 

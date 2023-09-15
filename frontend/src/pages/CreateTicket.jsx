@@ -3,8 +3,10 @@ import NavBarLI from './Components/navBar_loggedin';
 import './CreateTicket.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useParams} from "react-router-dom";
 
 function CreateTicket() {
+
   const [formData, setFormData] = useState({
     title: '',
     phoneNumber: '',
@@ -25,6 +27,7 @@ function CreateTicket() {
     try {
       const response = await fetch('http://127.0.0.1:4000/support/create', {
         method: 'POST',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -43,6 +46,9 @@ function CreateTicket() {
       toast.error('An error occurred');
     }
   };
+
+
+
 
   return (
     <div>
