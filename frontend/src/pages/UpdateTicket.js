@@ -69,10 +69,45 @@ function UpdateTicket() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your submission logic here
+
+    try {
+      const response = await fetch(`http://localhost:4000/support/update/${id}`, {
+        method: 'PUT', // Use PUT method for updating data
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          phoneNumber: formData.phoneNumber,
+          content: formData.text,
+        }),
+      });
+
+      if (response.status === 200) {
+        // Data successfully updated
+        const data = await response.json();
+        // Handle the response data as needed
+        console.log(data.updatedSupport);
+        toast.success('Data updated successfully');
+      } else if (response.status === 401) {
+        // Unauthorized
+        toast.error('Unauthorized');
+      } else if (response.status === 404) {
+        // Invalid Support ID
+        toast.error('Invalid Support ID');
+      } else {
+        // Handle other error cases
+        toast.error('Failed to update data');
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+      toast.error('Failed to update data');
+    }
   };
+
 
   return (
       <div>
