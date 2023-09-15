@@ -88,7 +88,7 @@ async function deleteBlog(req, res) {
       }
 
       console.log(req.user._id , blog.publisherId)
-      if (req.user._id.toString() !== blog.publisherId.toString()) {
+      if (req.user._id.toString() !== blog.publisherId.toString() && req.user.role !== 'admin') {
         return res.status(401).json({ message: 'Unauthorized' });
       }
 
