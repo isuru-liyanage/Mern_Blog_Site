@@ -42,10 +42,11 @@ const AddBlog = () => {
             const { data } = response;
             console.log("Image uploaded:", data.imageUrl);
     
-            setFormData({
-              ...formData,
+            setFormData(prevData => ({
+              ...prevData,
               photoUrl: data.imageUrl
-            });
+            }));
+            
           })
           .catch((error) => {
             handleError("Image upload failed");
@@ -55,13 +56,11 @@ const AddBlog = () => {
           setImagePreviewUrl("");
         }
       };
-      
-    
 
-    const handleInputChange = (name, value) => {
+      const handleInputChange = (name, value) => {
         setFormData((prevData) => ({
           ...prevData,
-          [name]: Array.isArray(prevData[name]) ? [value] : value
+          [name]: value
         }));
       };
       
@@ -79,6 +78,7 @@ const AddBlog = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
 
         try {
             const response = await axios.post("http://localhost:4000/blogs/create", formData, {
@@ -98,7 +98,7 @@ const AddBlog = () => {
                     navigate("/");
                 }, 1000);
             } else {
-                handleError(message);
+              handleError(message || "An error occurred");
             }
         } catch (error) {
             handleError(error);
@@ -139,11 +139,14 @@ const AddBlog = () => {
 
                 <div className="row">
                 <label>Image</label>
+
                 <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                key={imagePreviewUrl}
                 />
+
                 {imagePreviewUrl && (
                     <div className="image-preview">
                     <img src={imagePreviewUrl} alt="Preview" />
@@ -159,7 +162,6 @@ const AddBlog = () => {
         </div>
     );
 };
-
 
 const TextArea = (props) => (
     <div className="row">

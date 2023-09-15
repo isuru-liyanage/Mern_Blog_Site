@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Login, Signup,Home,Create} from "./pages";
+import { EditBlog } from "./pages/Blogs/EditBlog"
 // import Home from "./pages/Home";
 
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/Updateticket/:id" element={<UpdateTicket/>}/>
 
 
+
+        <Route path="/editor/:blogId" element={<EditBlog />} />
       </Routes>
     </div>
   );
