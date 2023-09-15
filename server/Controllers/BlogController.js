@@ -101,6 +101,18 @@ async function deleteBlog(req, res) {
   }
 }
 
+async function allBlogs(req, res){
+  try {
+
+    const blogs = await Blog.find();
+    res.status(200).json({message: "All blogs", success: true ,blogs});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to delete the blog' });
+  }
+}
+
 module.exports = {
-    createBlog, viewBlog, updateBlog, deleteBlog
+    createBlog, viewBlog, updateBlog, deleteBlog, allBlogs
 };

@@ -55,7 +55,19 @@ async function updateUser(req, res){
        }
 }
 
+async function allUsers(req, res){
+    try {
+  
+      const users = await User.find();
+      res.status(200).json({message: "All blogs", success: true ,users});
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to delete the blog' });
+    }
+  }
+
 module.exports = {
-    deleteUser, viewUser, updateUser
+    deleteUser, viewUser, updateUser, allUsers
 };
  
