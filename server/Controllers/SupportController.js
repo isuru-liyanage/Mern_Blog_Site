@@ -25,11 +25,34 @@ async function createSupport(req, res) {
 
 }
 
+async function getSupportsByUserId(req, res) {
+    try {
+
+
+
+        const userId = req.user._id;
+
+        const support = await Support.find({ userId: userId });;
+
+        if (!support || support.length === 0) {
+            return res.status(403).json({ message: "No supports found for the given user ID" });
+        }
+
+
+        res.status(200).json({ support });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to support' });
+    }
+
+}
+
 async function getSupportsBySupportId(req, res) {
     try {
-        
+
         const { SupportId } = req.params;
-        
+
         const userId = req.user._id;
 
         console.log(userId);
@@ -43,7 +66,7 @@ async function getSupportsBySupportId(req, res) {
         if(req.user._id.toString() !== support.userId.toString()){
             return res.status(401).json({ message: 'Unauthorized' });
         }
-        
+
         res.status(200).json({ support });
 
     } catch (error) {
@@ -52,7 +75,6 @@ async function getSupportsBySupportId(req, res) {
     }
 
 }
-
 async function DeleteSupport(req, res) {
     try {
         
@@ -115,10 +137,10 @@ async function updateSupport(req, res) {
 
 async function allSupports(req, res){
     try {
-  
+
       const supports = await Support.find();
       res.status(200).json({message: "All blogs", success: true ,supports});
-  
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Failed to delete the blog' });
@@ -128,6 +150,6 @@ async function allSupports(req, res){
 
 
 module.exports={
-    createSupport, getSupportsBySupportId,DeleteSupport,updateSupport, allSupports
+    createSupport, getSupportsBySupportId,DeleteSupport,updateSupport,getSupportsByUserId, allSupports
 };
 
