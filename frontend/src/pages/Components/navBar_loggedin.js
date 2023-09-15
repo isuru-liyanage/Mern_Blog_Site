@@ -28,10 +28,10 @@ function NavBarLI(props){
 
                     <nav className="header-navigation">
 
-                        <a href="#">Home</a>
-                        <a href="#">Support</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Contact Us</a>
+                        <a onClick={()=>navigate('/')}>Home</a>
+                        <a onClick={()=>navigate('/support')}>Support</a>
+                        {/*<a onClick={()=> navigate('')}>Blog</a>*/}
+                        <a onClick={()=>navigate('')}>Contact Us</a>
                         <button>Menu</button>
                     </nav>
 
