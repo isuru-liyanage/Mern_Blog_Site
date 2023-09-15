@@ -8,7 +8,10 @@ import BlogElements from "./pages/Blogs/viewBlog";
 import Profile from "./pages/Profile";
 import CreateTicket from "./pages/CreateTicket";
 import SupportView from "./pages/SupportView";
-
+import AdminNavigationBar from "./pages/Admin/Admin"
+import BlogManage from "./pages/Admin/BlogManage"
+import AllSupport from "./pages/Admin/SupportManage"
+import UserManage from "./pages/Admin/UserManage"
 
 
 function App() {
@@ -23,8 +26,12 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/CreateTicket" element={<CreateTicket />} />
         <Route path="/support" element={<SupportView/>}/>
-       <Route path="/CreateTicket" element={<CreateTicket />} />
+        <Route path="/CreateTicket" element={<CreateTicket />} />
         <Route path="/editor/:blogId" element={<EditBlog />} />
+        <Route path="/admin" element={<AdminNavigationBar />} />
+        <Route path="/blogmanage" element={<BlogManage/>} />
+        <Route path="/supportmanage" element={<AllSupport/>} />
+        <Route path="/usermanage" element={<UserManage/>} />
       </Routes>
     </div>
   );
