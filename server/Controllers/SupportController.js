@@ -68,8 +68,7 @@ async function DeleteSupport(req, res) {
             return res.status(404).json({message : "Support not found"})
         }
        
-
-        if(req.user._id.toString() !== support.userId.toString()){
+        if(req.user._id.toString() !== support.userId.toString() && req.user.role !== "admin"){
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
@@ -112,12 +111,23 @@ async function updateSupport(req, res) {
         console.error(error);
         res.status(500).json({ message: 'Failed to support' });
     }
+}
 
+async function allSupports(req, res){
+    try {
+  
+      const supports = await Support.find();
+      res.status(200).json({message: "All blogs", success: true ,supports});
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to delete the blog' });
+    }
 }
 
 
 
 module.exports={
-    createSupport, getSupportsBySupportId,DeleteSupport,updateSupport
+    createSupport, getSupportsBySupportId,DeleteSupport,updateSupport, allSupports
 };
 

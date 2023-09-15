@@ -1,59 +1,58 @@
+// AllSupport.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-// import './AllBlogs.css'; // Import your CSS file
+import './SupportManage.css'
 
-const AllBlogs = () => {
-  const [users, setUsers] = useState([]);
+const AllSupport = () => {
+  const [supports, setSupports] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/user/all', {
-      withCredentials: true
+    axios.get('http://localhost:4000/support/adminSupport', {
+      withCredentials: true,
     })
-      .then((response) => {
-        setUsers(response.data.users);
-      })
-      .catch((error) => {
-        console.error('Failed to fetch users:', error);
-      });
+    .then((response) => {
+      setSupports(response.data.supports);
+    })
+    .catch((error) => {
+      console.error('Failed to fetch support requests:', error);
+    });
   }, []);
 
-  const handleDelete = (userId) => {
-    axios.delete(`http://localhost:4000/user/deleteUser/${userId}`, {
-      withCredentials: true
+  const handleDelete = (supportId) => {
+    axios.delete(`http://localhost:4000/support/delete/${supportId}`, {
+      withCredentials: true,
     })
-      .then((response) => {
-        console.log('User deleted successfully:', response.data);
-        // Remove the deleted user from the state
-        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
-      })
-      .catch((error) => {
-        console.error('Failed to delete user:', error);
-      });
+    .then((response) => {
+      console.log('Support request deleted successfully:', response.data);
+      setSupports((prevSupports) => prevSupports.filter((support) => support._id !== supportId));
+    })
+    .catch((error) => {
+      console.error('Failed to delete support request:', error);
+    });
   };
 
   return (
     <div>
-      <h2>All Users</h2>
-      <table className="user-table">
+      <h2>All Support Requests</h2>
+      <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Phone Number</th>
             <th>Created At</th>
-            <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{new Date(user.createdAt).toLocaleString()}</td>
-              <td>{user.role}</td>
+          {supports.map((support) => (
+            <tr key={support._id}>
+              <td>{support.title}</td>
+              <td>{support.content}</td>
+              <td>{support.phoneno}</td>
+              <td>{support.createdAt}</td>
               <td>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
+                <button onClick={() => handleDelete(support._id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -63,4 +62,4 @@ const AllBlogs = () => {
   );
 };
 
-export default AllBlogs;
+export default AllSupport;

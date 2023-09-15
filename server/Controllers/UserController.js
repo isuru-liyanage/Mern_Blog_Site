@@ -65,7 +65,7 @@ async function allUsers(req, res){
       console.error(error);
       res.status(500).json({ message: 'Failed to delete the blog' });
     }
-  }
+}
 
 
 async function deleteUserAdmin(req, res){
