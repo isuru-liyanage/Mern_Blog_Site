@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './BlogManage.css'; // Import your CSS file
+import './BlogManage.css';
+import AdminNavigationBar from './Admin';
 
 const AllBlogs = () => {
   const [users, setUsers] = useState([]);
@@ -34,6 +35,7 @@ const AllBlogs = () => {
 
   return (
     <div>
+    <AdminNavigationBar/>
       <h2>All Users</h2>
       <table className="user-table">
         <thead>

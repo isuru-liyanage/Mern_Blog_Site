@@ -1,7 +1,7 @@
-// AllSupport.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './SupportManage.css'
+import AdminNavigationBar from './Admin';
 
 const AllSupport = () => {
   const [supports, setSupports] = useState([]);
@@ -33,6 +33,7 @@ const AllSupport = () => {
 
   return (
     <div>
+    <AdminNavigationBar/>
       <h2>All Support Requests</h2>
       <table>
         <thead>

@@ -8,6 +8,7 @@ import NavBarLI from "./Components/navBar_loggedin";
 import './Components/navBar.css'
 import Home_footer from "./Components/home_footer";
 import { useCookies } from "react-cookie";
+import { Link } from 'react-router-dom';
 
 // import profileView from "./pages/Profile_View";
 // import './pages/profileView.css'
@@ -81,6 +82,29 @@ const Home = () => {
     tigger= tigger+1
   };
 
+  const NavigationButton = () => {
+  
+    const buttonStyles = {
+      padding: "16px 32px", // Adjust padding to make the button larger
+      fontSize: "1.5rem",   // Adjust font size to increase text size
+      fontWeight: "bold",   // Make the text bold
+      backgroundColor: "#007bff", // Background color
+      color: "#fff",        // Text color
+      border: "none",      // Remove the border
+      borderRadius: "8px", // Add rounded corners
+      cursor: "pointer",   // Show a pointer cursor on hover
+      textDecoration: "none", // Remove underlines from the link
+      display: "inline-block", // Make it inline-block to control width
+    };
+      return (
+        <Link to="/usermanage">
+          <button style={buttonStyles}>Admin Controllers</button>
+        </Link>
+    
+    );
+  };
+  
+
   useEffect(()=>{
     const Apicall = async() =>{
       // console.log("api call")
@@ -109,9 +133,14 @@ const Home = () => {
           <button onClick={Logout}>LOGOUT</button>
         </div> */}
         <ToastContainer/>
+        {userRole === "admin" ? (
 
-
-
+        <NavigationButton />
+        ) : (
+          <div>
+            <h1>User Page</h1>
+          </div>
+        )}
         {bar}
 
         {/*<button onClick={() => setbar(<NavBar/>)}>Click ME</button>*/}
@@ -126,15 +155,6 @@ const Home = () => {
             {/*<BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/><BlogItem/>*/}
           </div>
         </div>
-      
-
-        {userRole === "admin" ? (
-        // <AdminHome />
-        <div><h1>Admin Page</h1></div>
-        ) : (
-        <div><h1>User Page</h1></div>
-        )}
-
         <Home_footer name={counter} updateCounter={updateCounter} />
 
       </>
