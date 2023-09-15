@@ -1,0 +1,31 @@
+/* admin-navigation-bar.css */
+
+nav {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    margin: 0;
+  }
+  
+  li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+  }
+  
+  li a:hover {
+    background-color: #555;
+    transition: background-color 0.3s ease;
+  }
+  
