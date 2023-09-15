@@ -25,28 +25,40 @@ function CreateTicket() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://127.0.0.1:4000/support/create', {
+      const response = await fetch('http://localhost:4000/support/create', {
         method: 'POST',
-        credentials: "include",
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          title: formData.title,
+          phoneno: formData.phoneNumber,
+          content: formData.text,
+        }),
       });
 
-      if (response.ok) {
-        // Ticket successfully created
-        toast.success('Ticket created successfully');
+      if (response.status === 201) {
+        // Data successfully created
+        const data = await response.json();
+        // Handle the response data as needed
+        console.log(data.support);
+        toast.success('Support ticket created successfully');
+        // Optionally, you can clear the form fields after submission
+        setFormData({
+          title: '',
+          phoneNumber: '',
+          text: '',
+        });
       } else {
-        // Handle the case where the request was not successful
-        toast.error('Failed to create ticket');
+        // Handle errors
+        toast.error('Failed to create support ticket');
       }
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('An error occurred');
+      console.error('Error creating support ticket:', error);
+      toast.error('Failed to create support ticket');
     }
   };
-
 
 
 
